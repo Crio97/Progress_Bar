@@ -1,0 +1,72 @@
+
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress Bar</title>
+    <style>
+        /* Stile per il body */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: transparent; /* Sfondo trasparente */
+        }
+
+        /* Contenitore della progress bar */
+        .progress-container {
+            width: 80%;
+            max-width: 600px;
+            height: 50px; /* Aumento dell'altezza della barra */
+            background-color: #e1eafc;
+            border-radius: 25px; /* Angoli più arrotondati */
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Barra di progresso blu scuro */
+        .progress-bar {
+            height: 100%;
+            background-color: #1a3d66; /* Colore blu scuro */
+            width: 0%; /* Partenza da 0% */
+            border-radius: 25px 0 0 25px; /* Angoli arrotondati */
+            transition: width 1s ease-in-out; /* Transizione per l'aggiornamento della larghezza */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            const progressBar = document.querySelector('.progress-bar');
+            const totalTime = 300; // Tempo totale in secondi (5 minuti)
+            const stepTime = 1000; // Intervallo di tempo tra ogni aggiornamento (1 secondo)
+            const totalSteps = totalTime; // Numero di passi totali (300)
+
+            let progress = 0;
+
+            function updateProgress() {
+                progress += (100 / totalSteps); // Incremento di 1% ogni secondo
+
+                if (progress >= 100) {
+                    progress = 100;
+                }
+
+                // Aggiorna la larghezza della barra
+                progressBar.style.width = progress + '%';
+            }
+
+            // Inizia l'aggiornamento
+            setInterval(updateProgress, stepTime); // Chiama updateProgress ogni secondo
+        };
+    </script>
+</body>
+</html>
